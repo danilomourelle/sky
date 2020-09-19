@@ -90,11 +90,11 @@ export class TokenController {
   public async check(req: Request, res: Response, next: NextFunction) {
     const bearerToken = req.headers.authorization as string
     const userId = req.params.userId
-    const [, token] = bearerToken.split(" ")
     try {
       if (!bearerToken) {
         throw new UnauthorizedError("Operação não autorizada")
       }
+      const [, token] = bearerToken.split(" ")
       const userToken = await TokenController.TokenBusiness.getTokenByUserId(userId)
       if (!userToken) {
         throw new NotFoundError("Operação não autorizada")
