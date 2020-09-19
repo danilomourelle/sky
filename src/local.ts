@@ -1,13 +1,13 @@
 import app from "./index";
 import dotenv from 'dotenv'
+import { AddressInfo } from "net";
 
 dotenv.config()
 
-const port = process.env.PORT || 5000
-
-const server = app.listen(port, () => {
+const server = app.listen(process.env.PORT || 5000, () => {
   if (server) {
-    console.log(`Servidor rodando em http://localhost:${port}`);
+    const address = server.address() as AddressInfo;
+    console.log(`Servidor rodando em http://localhost:${address}`);
   } else {
     console.error(`Falha ao rodar o servidor.`);
   }
