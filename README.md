@@ -87,7 +87,7 @@ Execute a aplicação
 ```
 npm run start:dev
 ```
-Você poderá utilizar os endpoints através de um cliente HTTP (ex. [Postman](https://www.postman.com/product/api-client/)) tendo o endereço [localhost:5000](http:localhost:5000) como URL base para as requisições. Para informações de cada endpoint disponível conferir a [documentação](https://documenter.getpostman.com/view/10578976/T1Dv7uKL?version=latest)
+Você poderá utilizar os endpoints através de um cliente HTTP (ex. [Postman](https://www.postman.com/product/api-client/)) tendo o endereço [localhost:5000](http:localhost:5000) como URL base para as requisições. Para informações de cada endpoint disponível conferir a [documentação](https://documenter.getpostman.com/view/10578976/TVKBYy3f)
 
 
 ### ADICIONAL
