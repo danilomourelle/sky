@@ -81,9 +81,11 @@ export class UserController {
 
       const now = moment().utcOffset(-180)
       const lastLogin = moment(user.getLastLogin()).utcOffset(-180)
+      const lastLogin2 = moment(user.getLastLogin())
       const session = now.diff(lastLogin, 'minutes')
       console.log(now, now.unix())
       console.log(lastLogin, lastLogin.unix())
+      console.log(lastLogin2, lastLogin2.unix())
       console.log(session)
       if (session > 30) {
         throw new UnauthorizedError("Sessão expirada")
