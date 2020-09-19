@@ -47,6 +47,7 @@ export class UserBusiness {
     }
 
     const now = moment().format()
+    console.log('now', now)
     await this.userDatabase.updateLastLoginUserById(user.getId(), now)
     user.setLastLogin(now)
 
