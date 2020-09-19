@@ -79,7 +79,9 @@ export class UserController {
         throw new NotFoundError("Usuário não encontrado")
       }
       
-      const lastLogin = moment().utcOffset(-180).diff(moment(user.getLastLogin()), 'minutes')
+      const now = moment().utcOffset(-180)
+      const lastLogin = now.diff(moment(user.getLastLogin()), 'minutes')
+      console.log(now, lastLogin, user.getLastLogin())
       if (lastLogin > 30) {
         throw new UnauthorizedError("Sessão expirada")
       }
