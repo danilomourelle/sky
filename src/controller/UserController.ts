@@ -79,9 +79,9 @@ export class UserController {
         throw new NotFoundError("Usuário não encontrado")
       }
 
-      const now = moment().utcOffset(-180)
+      const now = moment(moment().utcOffset(-180).format())
       const now2 = moment()
-      const lastLogin = moment(user.getLastLogin()).utcOffset(-180)
+      const lastLogin = moment(user.getLastLogin())
       const lastLogin2 = moment(user.getLastLogin())
       const session = now.diff(lastLogin, 'minutes')
       console.log(now, now.unix())
