@@ -71,23 +71,25 @@ export class UserController {
     const userId = req.params.userId
     const phones = res.locals.phones as Phone[]
     const token = res.locals.token as Token
-  
+
     try {
-      
+
       const user = await UserController.UserBusiness.getUserById(userId)
       if (!user) {
         throw new NotFoundError("Usuário não encontrado")
       }
-      
+
       const now = moment().utcOffset(-180)
       const lastLogin = moment(user.getLastLogin()).utcOffset(-180)
       const session = now.diff(lastLogin, 'minutes')
-      console.log(now, lastLogin, session)
+      console.log(now, now.unix())
+      console.log(lastLogin, lastLogin.unix())
+      console.log(session)
       if (session > 30) {
         throw new UnauthorizedError("Sessão expirada")
       }
-     
-      if(!phones.length){
+
+      if (!phones.length) {
         throw new NotFoundError("Telefones não encontrado")
       }
       res.status(200).send({
