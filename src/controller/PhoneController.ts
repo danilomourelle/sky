@@ -24,7 +24,6 @@ export class PhoneController {
     new UserDatabase(),
     new IdManager(),
     new HashManager(),
-    new TokenManager()
   )
 
   public async signUp(req: Request, res: Response, next: NextFunction) {

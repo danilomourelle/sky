@@ -6,18 +6,18 @@
 - [Github](https://github.com/danilomourelle)
 - <danilomourelle@outlook.com>
 
-# Challenge Back-end Provi
+# Challenge Back-end SKY
 
 <br>
 <p align="center">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/danilomourelle/Provi-Backend">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/danilomourelle/sky">
 
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/danilomourelle/Provi-Backend">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/danilomourelle/sky">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/danilomourelle/Provi-Backend">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/danilomourelle/sky">
 
-  <a href="https://github.com/danilomourelle/Provi-Backend/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/danilomourelle/Provi-Backend">
+  <a href="https://github.com/danilomourelle/sky/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/danilomourelle/sky">
   </a>
 </p>
 <br>
@@ -41,9 +41,9 @@
 
 :trophy: Cadastro de cliente em banco de dados.
 
-:trophy: Validar dados fornecidos como CPF e cruzamento entre CEP e Logradouro.
+:trophy: Busca de clientes nas bases.
 
-:trophy: Garantir uma sequencia de endpoints percorridos.
+:trophy: Garantir uma resposta padrão para endpoint inexistentes.
 
 ### Linguagens e libs utilizadas :books:
 
@@ -63,11 +63,11 @@
 No terminal, clone o projeto: 
 
 ```
-git clone https://github.com/danilomourelle/Provi-Backend.git
+git clone https://github.com/danilomourelle/sky.git
 ```
 Navegue para dentro da raiz do projeto
 ```
-cd Provi-Backend
+cd sky
 ```
 Instale as dependências
 ```
@@ -87,21 +87,12 @@ Execute a aplicação
 ```
 npm run start:dev
 ```
-Você poderá utilizar os endpoints através de um cliente HTTP (ex. [Postman](https://www.postman.com/product/api-client/)) tendo o endereço [localhost:3003](http:localhost:3003) como URL base para as requisições. Para informações de cada endpoint disponível conferir a [documentação](https://documenter.getpostman.com/view/10578976/T1Dv7uKL?version=latest)
-
+Você poderá utilizar os endpoints através de um cliente HTTP (ex. [Postman](https://www.postman.com/product/api-client/)) tendo o endereço [localhost:5000](http:localhost:5000) como URL base para as requisições. Para informações de cada endpoint disponível conferir a [documentação](https://documenter.getpostman.com/view/10578976/T1Dv7uKL?version=latest)
 
 
 ### ADICIONAL
 #### Querys realizadas paras as criações de tabelas utilizando o MySQL Workbench
 
-```SQL
--- Tabela do Usuário
-CREATE TABLE User (
-  id VARCHAR(255) PRIMARY KEY,
-  email VARCHAR(255) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL
-);
-```
 ```SQL
 -- Tabelas dos dados do Usuário
 CREATE TABLE SKY_User (
@@ -109,17 +100,17 @@ CREATE TABLE SKY_User (
   nome VARCHAR(255) NOT NULL,
   email VARCHAR(255) UNIQUE NOT NULL,
   password VARCHAR(255) NOT NULL,
-  data_criacao DATE NOT NULL,
-  data_atualizacao DATE NOT NULL,
-  ultimo_login DATE NOT NULL
+  data_criacao DATETIME NOT NULL,
+  data_atualizacao DATETIME NOT NULL,
+  ultimo_login DATETIME NOT NULL
 );
 
 CREATE TABLE SKY_PhoneNumber (
   id VARCHAR(255) PRIMARY KEY,
   phone_number VARCHAR(15) UNIQUE NOT NULL,
   phone_ddd VARCHAR(3) NOT NULL,
-  data_criacao DATE NOT NULL,
-  data_atualizacao DATE NOT NULL,
+  data_criacao DATETIME NOT NULL,
+  data_atualizacao DATETIME NOT NULL,
   user_id VARCHAR(255) NOT NULL,
   FOREIGN KEY (user_id) REFERENCES SKY_User (id)
 );
@@ -128,8 +119,8 @@ CREATE TABLE SKY_Token (
   id VARCHAR(255) PRIMARY KEY,
   token VARCHAR(255) UNIQUE NOT NULL,
   user_id VARCHAR(255) NOT NULL,
-  data_criacao DATE NOT NULL,
-  data_atualizacao DATE NOT NULL,
+  data_criacao DATETIME NOT NULL,
+  data_atualizacao DATETIME NOT NULL,
   FOREIGN KEY (user_id) REFERENCES SKY_User (id)
 );
 ```
