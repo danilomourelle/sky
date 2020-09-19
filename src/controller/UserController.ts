@@ -6,11 +6,12 @@ import { HashManager } from "../services/HashManager";
 import { BaseDatabase } from "../data/BaseDatabase";
 import { InvalidParameterError } from "../errors/InvalidParameterError";
 import { TokenManager } from "../services/TokenManager";
-import moment from "moment";
 import { UnauthorizedError } from "../errors/UnauthorizedError";
 import { NotFoundError } from "../errors/NotFoundError";
 import { Phone } from "../model/Phone";
 import { Token } from "../model/Token";
+import moment from "moment";
+
 
 export class UserController {
 
@@ -79,13 +80,12 @@ export class UserController {
       if (!user) {
         throw new NotFoundError("Usuário não encontrado")
       }
-      console.log(moment().format())
-      console.log(user.getLastLogin())
+      
       const lastLogin = moment().diff(moment(user.getLastLogin()), 'minutes')
       if (lastLogin > 30) {
         throw new UnauthorizedError("Sessão expirada")
       }
-      console.log(lastLogin)
+     
       if(!phones.length){
         throw new NotFoundError("Telefones não encontrado")
       }

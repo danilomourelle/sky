@@ -4,9 +4,9 @@ import { User } from "../model/User";
 import { HashManager } from "../services/HashManager";
 import { DataAlreadyInUser } from "../errors/DataAlreadyInUser";
 import { TokenManager } from "../services/TokenManager";
-import moment from "moment";
 import { NotFoundError } from "../errors/NotFoundError";
 import { UnauthorizedError } from "../errors/UnauthorizedError";
+import moment from "moment"
 
 export class UserBusiness {
   constructor(
@@ -25,7 +25,7 @@ export class UserBusiness {
     const id = this.idManager.generateId()
     const hash = await this.hashManager.generateHash(password);
 
-    const now = moment().format()
+    const now = moment().utcOffset(-180).format()
 
     const newUser = new User(id, nome, email, hash, now, now, now)
 
@@ -46,8 +46,8 @@ export class UserBusiness {
       throw new UnauthorizedError("Usuário e/ou senha inválidos")
     }
 
-    const now = moment().format()
-    console.log('now', now)
+    const now = moment().utcOffset(-180).format()
+    
     await this.userDatabase.updateLastLoginUserById(user.getId(), now)
     user.setLastLogin(now)
 
