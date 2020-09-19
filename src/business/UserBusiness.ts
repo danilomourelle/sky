@@ -13,7 +13,6 @@ export class UserBusiness {
     private userDatabase: UserDatabase,
     private idManager: IdManager,
     private hashManager: HashManager,
-    private tokenManager: TokenManager
   ) { }
 
   public async insert(nome: string, email: string, password: string): Promise<{ id: string, now: string }> {
@@ -38,9 +37,9 @@ export class UserBusiness {
     const user = await this.userDatabase.getUserByEmail(email);
 
     if (!user) {
-      throw new NotFoundError("Usuário e/ou senha inválidos")
+      throw new NotFoundError("Usuário não encontrado")
     }
-
+    
     const isPasswordValid = await this.hashManager.compareHash(password, user.getHash())
     if (!isPasswordValid) {
       throw new UnauthorizedError("Usuário e/ou senha inválidos")

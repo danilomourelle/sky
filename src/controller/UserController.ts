@@ -5,7 +5,6 @@ import { IdManager } from "../services/IdManager";
 import { HashManager } from "../services/HashManager";
 import { BaseDatabase } from "../data/BaseDatabase";
 import { InvalidParameterError } from "../errors/InvalidParameterError";
-import { TokenManager } from "../services/TokenManager";
 import { UnauthorizedError } from "../errors/UnauthorizedError";
 import { NotFoundError } from "../errors/NotFoundError";
 import { Phone } from "../model/Phone";
@@ -19,7 +18,6 @@ export class UserController {
     new UserDatabase(),
     new IdManager(),
     new HashManager(),
-    new TokenManager()
   )
 
   public async signUp(req: Request, res: Response, next: NextFunction) {
