@@ -80,7 +80,7 @@ export class UserController {
       }
       
       const now = moment().utcOffset(-180)
-      const lastLogin = moment(user.getLastLogin())
+      const lastLogin = moment(user.getLastLogin()).utcOffset(-180)
       const session = now.diff(lastLogin, 'minutes')
       console.log(now, lastLogin, session)
       if (session > 30) {
